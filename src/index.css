@@ -1,0 +1,160 @@
+/* ─── Design-system tokens ─────────────────────────────────────────────────── */
+:root {
+  --bg-primary:      #0f0f13;
+  --bg-panel:        #1a1a22;
+  --bg-elevated:     #23232e;
+  --text-primary:    #f0f0f0;
+  --text-secondary:  #9aa0b0;
+  --text-muted:      #727a90;
+  --accent-safety:   #f5c518;
+  --accent-success:  #4ade80;
+  --accent-warning:  #f97316;
+  --accent-danger:   #ef4444;
+  --border-subtle:   rgba(255,255,255,0.07);
+  --border-strong:   rgba(255,255,255,0.18);
+}
+
+/* ─── Reset ────────────────────────────────────────────────────────────────── */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 16px;
+  color: var(--text-primary);
+  background: var(--bg-primary);
+}
+a { color: inherit; text-decoration: none; }
+button { cursor: pointer; font-family: inherit; }
+input, select, textarea { font-family: inherit; }
+
+/* ─── Buttons ──────────────────────────────────────────────────────────────── */
+.btn-primary {
+  background: var(--accent-safety);
+  color: #0f0f13;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 6px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  letter-spacing: 0.01em;
+  transition: background 0.15s;
+}
+.btn-primary:hover { background: #e6b800; }
+
+.btn-secondary {
+  background: transparent;
+  color: var(--text-primary);
+  border: 1px solid var(--border-strong);
+  padding: 11px 22px;
+  border-radius: 6px;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+}
+.btn-secondary:hover { border-color: var(--text-secondary); background: rgba(255,255,255,0.04); }
+
+/* ─── Cards ────────────────────────────────────────────────────────────────── */
+.card {
+  background: var(--bg-panel);
+  border: 1px solid var(--border-subtle);
+  border-radius: 10px;
+  padding: 24px;
+  color: var(--text-primary);
+}
+
+/* ─── Badges ───────────────────────────────────────────────────────────────── */
+.badge-pass {
+  background: rgba(74,222,128,0.15);
+  color: var(--accent-success);
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.badge-fail {
+  background: rgba(239,68,68,0.15);
+  color: var(--accent-danger);
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* ─── HUD stat chips ───────────────────────────────────────────────────────── */
+.stat-chip {
+  background: rgba(255,255,255,0.10);
+  border: 1px solid var(--border-strong);
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  backdrop-filter: blur(4px);
+}
+
+/* ─── Form inputs ──────────────────────────────────────────────────────────── */
+.form-input {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 6px;
+  border: 1px solid var(--border-strong);
+  background: var(--bg-elevated);
+  color: var(--text-primary);
+  font-size: 15px;
+  outline: none;
+  transition: border-color 0.15s;
+}
+.form-input::placeholder { color: var(--text-muted); }
+.form-input:focus { border-color: var(--accent-safety); }
+/* Override Chrome's autofill white-box — inset shadow paints over the forced bg */
+.form-input:-webkit-autofill,
+.form-input:-webkit-autofill:hover,
+.form-input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0 1000px #23232e inset; /* matches --bg-elevated */
+  -webkit-text-fill-color: #f0f0f0;               /* matches --text-primary */
+  transition: background-color 99999s ease-in-out 0s;
+  border-color: var(--border-strong);
+}
+
+/* ─── Page layout ──────────────────────────────────────────────────────────── */
+/*
+  Every page shares one horizontal margin.
+  Nav bar background bleeds full-width; its *content* (logo + actions)
+  wraps in .pg-nav-inner so both sit at the margin edges.
+  Body sections use .pg-body for identical alignment.
+  Narrow single-card pages (game intro, help) use .pg-body-narrow.
+*/
+:root {
+  --pg-max: 1200px;
+  --pg-pad: 48px;
+}
+
+.pg-nav-inner {
+  max-width: var(--pg-max);
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 var(--pg-pad);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+}
+
+.pg-body {
+  max-width: var(--pg-max);
+  width: 100%;
+  margin: 0 auto;
+  padding: 48px var(--pg-pad);
+}
+
+.pg-body-narrow {
+  max-width: 860px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 48px var(--pg-pad);
+}
